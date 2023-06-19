@@ -1,0 +1,35 @@
+import pymongo
+import datetime
+import pprint 
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+old_orders = [{
+    "orderId": 1,
+    "customer": "John Doe",
+    "item": "Laptop"
+},{
+    "orderId": 2,
+    "customer": "Jane Smith",
+    "item": "Phone"
+},{
+    "orderId": 3,
+    "customer": "Swara D",
+    "item": "TV"
+}]
+db = client["test"]
+orders = db.old_orders
+result = orders.insert_many(old_orders)
+new_orders = db.new_orders
+
+for order in orders.find():
+    new_order = {
+        "orderId": order['orderId'],
+        "customer_name": order['customer'],
+        "item": order['item'],
+        "migration_date": datetime.datetime.now()
+    }
+
+    new_orders.insert_one(new_order)
+
+for order in new_orders.find():
+    pprint.pprint(order)

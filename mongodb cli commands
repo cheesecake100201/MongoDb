@@ -1,0 +1,120 @@
+Text Indexing 
+
+db.kitchen.insertMany([
+... {_id: 1, dept: "tech", description: "lime green computer" },
+... {_id: 2, dept: "tech", description: "wireless red mouse" },
+... {_id: 3, dept: "kitchen", description: "green placemat" },
+... {_id: 4, dept: "kitchen", description: "red peeler" },
+... {_id: 5, dept: "food", description: "green apple" },
+... {_id: 6, dept: "food", description: "red potato" }])
+
+Creating Index 
+db.kitchen.createIndex({dept:1, description: "text"})
+dept_1_description_text
+
+Querying through the kitchen collection
+db.kitchen.find({dept: "kitchen", $text: {$search: "green"}})
+[ { _id: 3, dept: 'kitchen', description: 'green placemat' } ]
+
+Excercise 10 on mongosh
+db.articles.insertMany([
+... {
+...         'title': 'Introduction to MongoDB',
+...         'content': 'MongoDB is a NoSQL database...',
+...     },
+...     {
+...         'title': 'Python Programming Guide',
+...         'content': 'Python is a powerful programming language...',
+...     },
+...     {
+...         'title': 'Web Development Basics',
+...         'content': 'Web development involves creating...',
+...     }])
+
+db.articles.createIndex({content: "text"})
+content_text
+
+db.articles.find({$text:{$search:"python"}})
+[
+  {
+    _id: ObjectId("64903d3389c9e74320c47ca1"),
+    title: 'Python Programming Guide',
+    content: 'Python is a powerful programming language...'
+  }
+]
+
+
+2DSphere indexing
+
+db.places.insertMany( [
+...    {
+...       loc : { type: "Point", coordinates: [ -73.97, 40.77 ] },
+...       name: "Central Park",
+...       category : "Parks"
+...    },
+...    {
+...       loc : { type: "Point", coordinates: [ -73.88, 40.78 ] },
+...       name: "La Guardia Airport",
+...       category : "Airport"
+...    }
+... ] )
+
+2Dsphere indexing
+db.places.createIndex({loc:'2dsphere'})
+
+Querying a 2dsphere
+
+db.places.find({loc:{$near:{$geometry:{type:'Point',coordinates: [ -73.97, 40.77 ]},$maxDistance: 5000}}})
+
+result
+[
+  {
+    _id: ObjectId("649040f589c9e74320c47ca3"),
+    loc: { type: 'Point', coordinates: [ -73.97, 40.77 ] },
+    name: 'Central Park',
+    category: 'Parks'
+  }
+]
+
+Grouping and aggregate question
+
+The inserted collection can be found in the python file of this question
+
+db.students.aggregate([{ $group:{"_id":"$grade","averageAge":{$avg: "$age"}, "count":{$sum:1}}},
+... {$sort:{"_id":1}}])
+
+[
+  { _id: 'A', averageAge: 21, count: 8 },
+  { _id: 'B', averageAge: 22, count: 6 },
+  { _id: 'C', averageAge: 20, count: 6 }
+]
+
+
+Array Fields
+
+The inserted collection can be found in the python file of this question
+
+db.employees.find({skills:{$in:['JavaScript']}})
+[
+  {
+    _id: ObjectId("6490628fb52980403fc6e2dc"),
+    name: 'Alice',
+    skills: [ 'Python', 'Django', 'JavaScript' ]
+  },
+  {
+    _id: ObjectId("6490628fb52980403fc6e2dd"),
+    name: 'Bob',
+    skills: [ 'JavaScript', 'React', 'Node.js' ]
+  },
+  {
+    _id: ObjectId("6490628fb52980403fc6e2e1"),
+    name: 'Frank',
+    skills: [ 'Python', 'Flask', 'JavaScript' ]
+  },
+  {
+    _id: ObjectId("6490628fb52980403fc6e2e2"),
+    name: 'Grace',
+    skills: [ 'JavaScript', 'Angular', 'Node.js' ]
+  }
+]
+
