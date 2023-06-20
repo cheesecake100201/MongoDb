@@ -17,6 +17,11 @@ db.kitchen.find({dept: "kitchen", $text: {$search: "green"}})
 [ { _id: 3, dept: 'kitchen', description: 'green placemat' } ]
 
 Excercise 10 on mongosh
+
+Create a collection called "articles" and insert documents representing articles with fields like "title" and "content".
+Create a text index on the "content" field.
+Write a query to search for articles that contain a specific keyword in their content.
+ 
 db.articles.insertMany([
 ... {
 ...         'title': 'Introduction to MongoDB',
@@ -45,6 +50,10 @@ db.articles.find({$text:{$search:"python"}})
 
 
 2DSphere indexing
+
+Create a collection called "restaurants" and insert documents representing restaurants with fields like "name", "location", and "cuisine".
+Create a 2dsphere index on the "location" field.
+Write a query to find all restaurants within a certain distance from a given latitude and longitude.
 
 db.places.insertMany( [
 ...    {
@@ -78,6 +87,9 @@ result
 
 Grouping and aggregate question
 
+Given a collection of documents representing students, each containing fields like "name", "age", and "grade",
+write a MongoDB query to calculate the average age and average grade for each grade level.
+
 The inserted collection can be found in the python file of this question
 
 db.students.aggregate([{ $group:{"_id":"$grade","averageAge":{$avg: "$age"}, "count":{$sum:1}}},
@@ -91,6 +103,10 @@ db.students.aggregate([{ $group:{"_id":"$grade","averageAge":{$avg: "$age"}, "co
 
 
 Array Fields
+
+Create a collection called "employees" and insert documents representing employees with fields like "name" and "skills" (an array of skills).
+Write a query to find all employees who possess a specific skill.
+
 
 The inserted collection can be found in the python file of this question
 

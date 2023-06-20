@@ -1,3 +1,8 @@
+# Create a collection called "restaurants" and insert documents representing restaurants with fields like "name", "location", and "cuisine".
+# Create a 2dsphere index on the "location" field.
+# Write a query to find all restaurants within a certain distance from a given latitude and longitude.
+
+
 import pymongo
 from pprint import pprint
 from pymongo import MongoClient

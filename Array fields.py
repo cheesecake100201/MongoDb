@@ -1,3 +1,7 @@
+# Create a collection called "employees" and insert documents representing employees with fields like "name" and "skills" (an array of skills).
+# Write a query to find all employees who possess a specific skill.
+
+
 import pymongo
 from pymongo import MongoClient
 from pprint import pprint

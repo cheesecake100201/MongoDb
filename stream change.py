@@ -1,3 +1,7 @@
+# Implement a Python script that listens to a MongoDB collection for changes using change streams and performs a specific action 
+# whenever a new document is inserted.
+
+
 import pymongo
 from pymongo import MongoClient
 from bson.json_util import dumps

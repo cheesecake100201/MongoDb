@@ -1,3 +1,8 @@
+# Create a new collection called "old_orders" and populate it with a large number of documents representing old orders.
+# Write a Python script to migrate these old orders to a new collection called "new_orders" while transforming the data structure 
+# and adding additional fields.
+
+
 import pymongo
 import datetime
 import pprint 

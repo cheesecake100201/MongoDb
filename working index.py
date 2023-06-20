@@ -1,3 +1,8 @@
+# Create a new collection called "products" and insert documents with fields like "name", "price", and "category".
+# Create an index on the "price" field.
+# Write a query to find all products in a specific category with a price range between $10 and $50.
+
+
 import pymongo
 from pymongo import MongoClient
 from datetime import datetime

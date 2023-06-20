@@ -1,3 +1,8 @@
+# Create a collection called "articles" and insert documents representing articles with fields like "title" and "content".
+# Create a text index on the "content" field.
+# Write a query to search for articles that contain a specific keyword in their content.
+
+
 import pymongo
 import datetime
 from pprint import pprint

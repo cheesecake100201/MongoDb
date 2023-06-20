@@ -1,3 +1,7 @@
+# Given a collection of documents representing students, each containing fields like "name", "age", and "grade", 
+# write a MongoDB query to calculate the average age and average grade for each grade level.
+
+
 import pymongo
 from pymongo import MongoClient
 from pprint import pprint

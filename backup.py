@@ -1,3 +1,5 @@
+# Write a Python script to backup a MongoDB database by creating a dump of the data.
+
 import subprocess
 
 db_name = 'test'

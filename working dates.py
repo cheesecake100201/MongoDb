@@ -1,3 +1,7 @@
+# Create a collection called "events" and insert documents with fields like "event_name" and "event_date" representing upcoming events.
+# Write a query to find all events that are happening within the next 7 days.
+
+
 import pymongo
 from pymongo import MongoClient
 import pprint
